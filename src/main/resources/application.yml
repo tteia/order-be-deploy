@@ -2,14 +2,9 @@ server:
   port: 8080
 
 spring:
-#  config:
-#    activate:
-#      on-profile: local
-#  session:
-#    storage-type: redis
   redis:
     host: localhost
-    port: 6379 #전형적인 Redis 포트
+    port: 6379
 
 #  ## rabbitMQ 환경설정
 #  rabbitmq:
