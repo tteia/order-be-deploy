@@ -52,4 +52,4 @@ jobs:
             --spring.datasource.username=admin \
             --spring.datasource.password=${{secrets.DB_PW}} \
             --cloud.aws.credentials.access-key=${{secrets.S3_KEY}} \
-            --cloud.aws.credentials.secret-key=${{secrets.S3_SECRET}} > home/ubuntu/app.log 2>&1 &
+            --cloud.aws.credentials.secret-key=${{secrets.S3_SECRET}} > /home/ubuntu/app.log 2>&1 &
