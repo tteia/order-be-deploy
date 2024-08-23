@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<div th:fragment="headerFragment">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:aliceblue">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a href="/" class="navbar-brand mx-auto position-absolute start-50 translate-middle-x">🐬 게시판 서비스 🍑</a>
+      <ul class="navbar-nav ms-auto">
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+          <a href="/author/list" class="nav-link" style="color:orange">🐶 회원 목록</a>
+        </li>
+        <li class="nav-item">
+          <a href="/post/list" class="nav-link" style="color:orange">🐹 게시글 목록</a>
+        </li>
+        <li class="nav-item">
+          <a href="/author/register" class="nav-link" style="color:orange">🐰 회원 가입</a>
+        </li>
+        <li class="nav-item" th:if="${session.email == null}">
+          <a href="/author/login-screen" class="nav-link" style="color:orange">🥕 로그인</a>
+        </li>
+        <li class="nav-item" th:if="${session.email != null}">
+          <a href="/doLogout" class="nav-link" style="color:orange">👋🏻 로그아웃</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+</body>
+</html>

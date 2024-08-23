@@ -1,0 +1,60 @@
+server:
+  port: 8080
+
+spring:
+#  config:
+#    activate:
+#      on-profile: local
+  session:
+    storage-type: redis
+  redis:
+    host: localhost
+    port: 6379 #전형적인 Redis 포트
+
+#  ## rabbitMQ 환경설정
+#  rabbitmq:
+#    host: localhost
+#    port: 5672 #전형적인 rabbitMq 포트
+#    username: guest
+#    password: guest
+#    virtual-host: /
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/ordersystem
+    username: root
+    password: 0430aa
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show_sql: true
+
+logging:
+##  로그 레벨 : trace < debug < info < error 순서의 로그 레벨을 가짐.
+##  즉, info 로 설정 시 trace, debug 로그는 출력되지 않음.
+  level:
+    root: info
+#    root: debug
+#  file:
+#    name: logs/app.log
+
+jwt:
+  expiration: 30
+  secretKey: my_token_secret
+  expirationRt: 14400
+  secretKeyRt: refreshTk_secret
+
+#aws s3 설정
+cloud:
+  aws:
+    credentials:
+      access-key: test
+      secret-key: test
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket: tteia-file

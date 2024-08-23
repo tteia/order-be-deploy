@@ -1,0 +1,34 @@
+name: deploy to ec2 with jar
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bulid-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout branch
+        uses: actions/checkout@v2
+
+      - name: setup java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: build jar
+        working-directory: .
+        run: |
+          chmod 777 ./gradlew
+          ./gradlew bootJar
+
+      - name: copy jar to ec2
+        uses: appleboy/scp-action@master
+        with:
+          host: ec2-43-203-170-24.ap-northeast-2.compute.amazonaws.com
+          username: ubuntu
+#          pemkey 를 통해 해당 인스턴스에 연결
+          key: ${{secrets.EC2_PEMKEY}}
+          source: "./build/libs/*.jar"
+          target: "/home/ubuntu"
