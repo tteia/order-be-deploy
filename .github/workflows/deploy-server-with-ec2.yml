@@ -47,7 +47,7 @@ jobs:
             fi
             sudo killall java
             nohup java -jar /home/ubuntu/build/libs/*.jar \
-            --spring.redis.host=${{secrets.REDIS.HOST}} \
+            --spring.redis.host=${{secrets.REDIS_HOST}} \
             --spring.datasource.url=jdbc:mariadb://${{secrets.DB_HOST}}:3306/ordersystem \
             --spring.datasource.username=admin \
             --spring.datasource.password=${{secrets.DB_PW}} \
