@@ -23,7 +23,7 @@ public class InitialDataLoader implements CommandLineRunner {
             // Optional 객체라서 isEmpty 인지 체크할 수 있다 !
         if(memberRepository.findByEmail("admin@test.com").isEmpty()){
             memberService.memberCreate(MemberSaveReqDto.builder()
-                    .name("시스템 짱")
+                    .name("admin")
                     .email("admin@test.com")
                     .password("12341234")
                     .role(Role.ADMIN)
