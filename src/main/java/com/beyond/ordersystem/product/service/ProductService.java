@@ -108,7 +108,7 @@ public class ProductService{
             product = productRepository.save(createDto.toEntity());
             byte[] bytes = image.getBytes();
             String fileName = product.getId() + "_" + image.getOriginalFilename();
-            Path path = Paths.get("/Users/tteia/Desktop/tmp/", fileName);
+            Path path = Paths.get("/tmp/", fileName);
 
             // local pc 에 임시 저장.
             Files.write(path, bytes, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
