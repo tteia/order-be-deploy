@@ -26,7 +26,7 @@ jobs:
       - name: copy jar to ec2 inst1
         uses: appleboy/scp-action@master
         with:
-          host: ec2-43-203-170-24.ap-northeast-2.compute.amazonaws.com
+          host: ec2-3-36-114-160.ap-northeast-2.compute.amazonaws.com
           username: ubuntu
 #          pemkey 를 통해 해당 인스턴스에 연결
           key: ${{secrets.EC2_PEMKEY}}
@@ -36,7 +36,7 @@ jobs:
       - name: install java and run jar on ec2 inst1
         uses: appleboy/ssh-action@master
         with:
-          host: ec2-43-203-170-24.ap-northeast-2.compute.amazonaws.com
+          host: ec2-3-36-114-160.ap-northeast-2.compute.amazonaws.com
           username: ubuntu
           key: ${{secrets.EC2_PEMKEY}}
           script: |
@@ -55,20 +55,20 @@ jobs:
             --cloud.aws.credentials.secret-key=${{secrets.S3_SECRET}} > /home/ubuntu/app.log 2>&1 &
             
 
-      - name: copy jar to ec2 inst1
+      - name: copy jar to ec2 inst2
         uses: appleboy/scp-action@master
         with:
-          host: ec2-13-125-132-145.ap-northeast-2.compute.amazonaws.com
+          host: ec2-13-125-52-54.ap-northeast-2.compute.amazonaws.com
           username: ubuntu
           #          pemkey 를 통해 해당 인스턴스에 연결
           key: ${{secrets.EC2_PEMKEY}}
           source: "./build/libs/*.jar"
           target: "/home/ubuntu"
 
-      - name: install java and run jar on ec2 inst1
+      - name: install java and run jar on ec2 inst2
         uses: appleboy/ssh-action@master
         with:
-          host: ec2-13-125-132-145.ap-northeast-2.compute.amazonaws.com
+          host: ec2-13-125-52-54.ap-northeast-2.compute.amazonaws.com
           username: ubuntu
           key: ${{secrets.EC2_PEMKEY}}
           script: |
