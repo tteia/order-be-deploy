@@ -22,7 +22,7 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: push to dockerhub
-        run: docker push tteia/ordersystem:latest .
+        run: docker push tteia/ordersystem:latest
 
       - name: ec2 ssh login and docker compose update
         uses: appleboy/ssh-action@master
