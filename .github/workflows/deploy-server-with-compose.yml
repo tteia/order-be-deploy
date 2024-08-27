@@ -22,4 +22,18 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: push to dockerhub
-        run: docker push tteia/ordersystem:latest
+        run: docker push tteia/ordersystem:latest --platform linux/amd64 .
+
+      - name: ec2 ssh login and docker compose update
+        uses: appleboy/ssh-action@master
+        with:
+          host: ec2-3-36-90-101.ap-northeast-2.compute.amazonaws.com
+          username: ubuntu
+          key: ${{secrets.EC2_PEMKEY}}
+          script: |
+            if ! type docker > /dev/null ; then
+              sudo snap install docker || echo "docker install failed ! ! ! ! "
+            fi
+            sudo docker login --username ${{secrets.DOCKER_EMAIL}} --password ${{secrets.DOCKER_PASSWORD}}
+            
+            sudo docker-compose pull && sudo docker-compose up -d
