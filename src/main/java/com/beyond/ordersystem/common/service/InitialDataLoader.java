@@ -25,7 +25,7 @@ public class InitialDataLoader implements CommandLineRunner {
             memberService.memberCreate(MemberSaveReqDto.builder()
                     .name("admin")
                     .email("admin@test.com")
-                    .password("12341234")
+                    .password("123123123")
                     .role(Role.ADMIN)
                     .build());
         }
